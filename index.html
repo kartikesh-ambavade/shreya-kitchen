@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreya's Kitchen — Home-style Rotis, Delivered Fresh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAF3E7;
+    --surface: #F3E6CC;
+    --surface-2: #ECD8AF;
+    --ink: #2E1F16;
+    --ink-soft: #6B5744;
+    --primary: #A23B2E;
+    --primary-dark: #7C2B21;
+    --gold: #C9962F;
+    --green: #4F7A52;
+    --cream-line: rgba(46,31,22,0.12);
+    --radius: 22px;
+    --shadow: 0 10px 30px rgba(46,31,22,0.14);
+    --shadow-sm: 0 4px 14px rgba(46,31,22,0.10);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0;
+    line-height:1.1;
+  }
+  p{margin:0;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+  .eyebrow{
+    font-family:'Work Sans', sans-serif;
+    font-weight:700;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--primary);
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- background texture ---------- */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(46,31,22,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,243,231,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--cream-line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .logo-mark{
+    width:38px;height:38px;flex:none;
+  }
+  .logo-text{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.28rem;
+    letter-spacing:-0.01em;
+  }
+  .logo-text span{
+    display:block;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:0.6rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:-2px;
+  }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    font-weight:600;
+    font-size:0.94rem;
+  }
+  .nav-links a{
+    text-decoration:none;
+    color:var(--ink-soft);
+    transition:color .2s ease;
+    position:relative;
+  }
+  .nav-links a:hover{color:var(--primary);}
+  .nav-actions{display:flex;align-items:center;gap:14px;}
+
+  .cart-btn{
+    position:relative;
+    width:44px;height:44px;
+    border-radius:50%;
+    background:var(--surface);
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--cream-line);
+    transition:transform .2s ease, background .2s ease;
+  }
+  .cart-btn:hover{background:var(--surface-2); transform:translateY(-1px);}
+  .cart-count{
+    position:absolute;
+    top:-4px;right:-4px;
+    background:var(--primary);
+    color:#fff;
+    font-size:0.68rem;
+    font-weight:700;
+    min-width:19px;height:19px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    padding:0 3px;
+    border:2px solid var(--bg);
+  }
+
+  .nav-toggle{
+    display:none;
+    width:40px;height:40px;
+    align-items:center;justify-content:center;
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    content:"";
+    display:block;
+    width:20px;height:2px;
+    background:var(--ink);
+    position:relative;
+    transition:.2s;
+  }
+  .nav-toggle span::before{position:absolute;top:-6px;}
+  .nav-toggle span::after{position:absolute;top:6px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:64px 0 60px;
+    z-index:1;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:52px;
+    align-items:center;
+  }
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--surface);
+    border:1px solid var(--cream-line);
+    padding:7px 14px 7px 8px;
+    border-radius:999px;
+    font-size:0.78rem;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin-bottom:22px;
+  }
+  .hero-badge .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--green);
+    box-shadow:0 0 0 3px rgba(79,122,82,0.18);
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 4.6vw, 3.6rem);
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--primary);
+    font-weight:500;
+  }
+  .hero-sub{
+    margin-top:20px;
+    font-size:1.08rem;
+    line-height:1.65;
+    color:var(--ink-soft);
+    max-width:46ch;
+  }
+  .hero-ctas{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:14px 24px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.96rem;
+    text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{
+    background:var(--primary);
+    color:#fff;
+    box-shadow:var(--shadow-sm);
+  }
+  .btn-primary:hover{background:var(--primary-dark); transform:translateY(-2px); box-shadow:var(--shadow);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1.5px solid var(--cream-line);
+  }
+  .btn-ghost:hover{border-color:var(--ink); transform:translateY(-2px);}
+
+  .hero-trust{
+    margin-top:34px;
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+  }
+  .trust-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:0.86rem;
+    font-weight:600;
+    color:var(--ink-soft);
+  }
+  .trust-item svg{flex:none;color:var(--primary);}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1;
+  }
+  .hero-photo{
+    position:absolute;
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    border:6px solid var(--bg);
+  }
+  .hero-photo img{width:100%;height:100%;object-fit:cover;}
+  .hero-photo.p1{width:64%;top:0;left:6%;aspect-ratio:4/5; z-index:2;}
+  .hero-photo.p2{width:46%;bottom:0;right:0;aspect-ratio:1/1; z-index:3;}
+
+  .stamp{
+    position:absolute;
+    top:8%;
+    right:4%;
+    width:132px;height:132px;
+    z-index:4;
+    animation:spin 22s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  @media (prefers-reduced-motion: reduce){
+    .stamp{animation:none;}
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{ padding:78px 0; position:relative; z-index:1; }
+  .section-head{
+    max-width:640px;
+    margin:0 0 44px;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem, 3vw, 2.5rem);
+    margin-top:10px;
+  }
+  .section-head p{
+    margin-top:14px;
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    line-height:1.6;
+  }
+
+  /* ---------- MENU ---------- */
+  .menu{ background:var(--surface); border-radius:36px; }
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .card{
+    background:var(--bg);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+    display:flex;
+    flex-direction:column;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .card.in-view{opacity:1; transform:none;}
+  .card-photo{
+    aspect-ratio:4/3;
+    position:relative;
+    overflow:hidden;
+  }
+  .card-photo img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .card:hover .card-photo img{transform:scale(1.06);}
+  .card-tag{
+    position:absolute;
+    top:12px;left:12px;
+    background:rgba(250,243,231,0.92);
+    padding:5px 11px;
+    border-radius:999px;
+    font-size:0.68rem;
+    font-weight:700;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--primary);
+  }
+  .card-body{
+    padding:18px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .card-title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .card-title-row h3{
+    font-size:1.18rem;
+  }
+  .card-unit-price{
+    font-family:'Work Sans', sans-serif;
+    font-weight:700;
+    color:var(--primary-dark);
+    white-space:nowrap;
+    font-size:0.95rem;
+  }
+  .card-desc{
+    color:var(--ink-soft);
+    font-size:0.9rem;
+    line-height:1.55;
+    flex:1;
+  }
+  .card-footer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:6px;
+  }
+  .qty-stepper{
+    display:flex;
+    align-items:center;
+    border:1.5px solid var(--cream-line);
+    border-radius:999px;
+    overflow:hidden;
+  }
+  .qty-stepper button{
+    width:32px;height:32px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;
+    font-weight:600;
+    color:var(--ink);
+    transition:background .15s ease;
+  }
+  .qty-stepper button:hover{background:var(--surface);}
+  .qty-stepper .qty-val{
+    min-width:26px;
+    text-align:center;
+    font-weight:700;
+    font-size:0.92rem;
+  }
+  .card-line-total{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  .add-btn{
+    background:var(--ink);
+    color:#fff;
+    padding:10px 16px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.86rem;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:background .18s ease, transform .18s ease;
+    white-space:nowrap;
+  }
+  .add-btn:hover{background:var(--primary); transform:translateY(-1px);}
+  .add-btn.added{background:var(--green);}
+
+  /* ---------- ABOUT ---------- */
+  .about-panel{
+    background:var(--primary);
+    background-image:radial-gradient(circle at 15% 20%, rgba(255,255,255,0.06), transparent 40%),
+                      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.05), transparent 45%);
+    color:#FBF1E2;
+    border-radius:36px;
+    padding:76px 32px;
+    text-align:center;
+  }
+  .about-panel .eyebrow{ color:var(--gold); }
+  .about-panel h2{
+    color:#fff;
+    margin-top:12px;
+    font-size:clamp(1.9rem, 3.4vw, 2.6rem);
+    max-width:16ch;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .about-lead{
+    max-width:600px;
+    margin:20px auto 0;
+    font-size:1.05rem;
+    line-height:1.75;
+    color:rgba(251,241,226,0.82);
+  }
+  .about-rule{
+    width:64px;height:2px;
+    background:var(--gold);
+    margin:36px auto;
+    border:none;
+  }
+  .about-quote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.3rem, 2.4vw, 1.7rem);
+    max-width:20ch;
+    margin:0 auto;
+    line-height:1.45;
+    color:#fff;
+  }
+
+  /* ---------- CONTACT / QUICK LINKS ---------- */
+  .contact{
+    background:var(--ink);
+    color:var(--bg);
+    border-radius:36px;
+  }
+  .contact .eyebrow{color:var(--gold);}
+  .contact .section-head h2{color:#fff;}
+  .contact .section-head p{color:rgba(250,243,231,0.7);}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+  }
+  .contact-card{
+    background:rgba(250,243,231,0.06);
+    border:1px solid rgba(250,243,231,0.14);
+    border-radius:18px;
+    padding:24px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    text-decoration:none;
+    color:inherit;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .contact-card:hover{background:rgba(250,243,231,0.12); transform:translateY(-3px);}
+  .contact-card .icon-wrap{
+    width:44px;height:44px;
+    border-radius:12px;
+    background:rgba(250,243,231,0.1);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold);
+  }
+  .contact-card h4{
+    font-size:1.02rem;
+    color:#fff;
+  }
+  .contact-card p{
+    font-size:0.86rem;
+    color:rgba(250,243,231,0.68);
+    line-height:1.5;
+  }
+  .contact-card .cta-line{
+    margin-top:auto;
+    font-size:0.8rem;
+    font-weight:700;
+    color:var(--gold);
+    display:flex;align-items:center;gap:6px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:36px 0 44px;
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.86rem;
+    position:relative;
+    z-index:1;
+  }
+  footer .foot-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+
+  /* ---------- CART DRAWER ---------- */
+  .overlay{
+    position:fixed; inset:0;
+    background:rgba(46,31,22,0.42);
+    opacity:0; pointer-events:none;
+    transition:opacity .25s ease;
+    z-index:90;
+  }
+  .overlay.open{opacity:1; pointer-events:auto;}
+
+  .drawer{
+    position:fixed;
+    top:0; right:0;
+    height:100%;
+    width:420px;
+    max-width:92vw;
+    background:var(--bg);
+    z-index:91;
+    box-shadow:-14px 0 40px rgba(46,31,22,0.2);
+    transform:translateX(100%);
+    transition:transform .32s cubic-bezier(.4,0,.2,1);
+    display:flex;
+    flex-direction:column;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer-head{
+    padding:22px 22px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--cream-line);
+  }
+  .drawer-head h3{font-size:1.3rem;}
+  .drawer-close{
+    width:36px;height:36px;
+    border-radius:50%;
+    background:var(--surface);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .drawer-body{
+    flex:1;
+    overflow-y:auto;
+    padding:16px 22px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+  .empty-cart{
+    text-align:center;
+    padding:60px 10px;
+    color:var(--ink-soft);
+  }
+  .empty-cart svg{margin:0 auto 14px; color:var(--cream-line);}
+  .empty-cart p{font-size:0.95rem; line-height:1.6;}
+
+  .drawer-item{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    padding:12px;
+    background:var(--surface);
+    border-radius:16px;
+  }
+  .drawer-item img{
+    width:58px;height:58px;
+    border-radius:10px;
+    object-fit:cover;
+    flex:none;
+  }
+  .drawer-item-info{flex:1; min-width:0;}
+  .drawer-item-info h4{font-size:0.95rem; font-weight:700;}
+  .drawer-item-info .price-line{
+    font-size:0.8rem;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .drawer-item-controls{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:8px;
+  }
+  .remove-btn{
+    font-size:0.74rem;
+    font-weight:700;
+    color:var(--primary);
+    text-decoration:underline;
+  }
+
+  .drawer-footer{
+    padding:18px 22px 24px;
+    border-top:1px solid var(--cream-line);
+  }
+  .total-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  }
+  .total-row span:first-child{
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    font-weight:600;
+  }
+  .total-row strong{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+  }
+  .whatsapp-btn{
+    width:100%;
+    justify-content:center;
+    background:#25D366;
+    color:#fff;
+    padding:15px 20px;
+    font-size:1rem;
+  }
+  .whatsapp-btn:hover{background:#1eb958;}
+  .drawer-hint{
+    text-align:center;
+    font-size:0.76rem;
+    color:var(--ink-soft);
+    margin-top:10px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr; gap:40px;}
+    .hero-visual{max-width:420px; margin:0 auto; width:100%;}
+    .menu-grid{grid-template-columns:repeat(2,1fr);}
+    .contact-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width: 680px){
+    .nav-links{
+      position:fixed;
+      top:70px; left:0; right:0;
+      background:var(--bg);
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      padding:8px 24px 18px;
+      border-bottom:1px solid var(--cream-line);
+      transform:translateY(-130%);
+      opacity:0;
+      transition:transform .25s ease, opacity .25s ease;
+      z-index:49;
+    }
+    .nav-links.open{transform:translateY(0); opacity:1;}
+    .nav-links a{padding:12px 0; width:100%; border-bottom:1px solid var(--cream-line);}
+    .nav-toggle{display:flex;}
+    .menu-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .section{padding:56px 0;}
+    .drawer{width:100%; max-width:100vw;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="22" fill="#A23B2E"/>
+        <path d="M13 24c0-6 4.9-11 11-11s11 5 11 11" stroke="#FAF3E7" stroke-width="2.4" stroke-linecap="round"/>
+        <ellipse cx="24" cy="26" rx="12" ry="5.5" fill="#FAF3E7"/>
+        <ellipse cx="24" cy="25.2" rx="12" ry="5.5" fill="#C9962F"/>
+      </svg>
+      <div class="logo-text">Shreya's Kitchen<span>Home-cooked · Fresh Daily</span></div>
+    </div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="cart-btn" id="cartOpenBtn" aria-label="Open cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span class="cart-count" id="cartCount" style="display:none;">0</span>
+      </button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= MENU ================= -->
+<section class="section" id="menu" style="padding-top:52px;">
+  <div class="wrap">
+    <div class="menu">
+      <div style="padding:56px 32px 8px;">
+        <div class="section-head">
+          <span class="eyebrow">Today's Menu</span>
+          <h2>Pick your rotis, set the quantity.</h2>
+          <p>Every item is made in small batches and cooked to order. Prices are per piece — the total updates automatically as you adjust quantity.</p>
+        </div>
+        <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="about-panel">
+      <span class="eyebrow">About Shreya's Kitchen</span>
+      <h2>A home kitchen, run the way your grandmother would run it.</h2>
+      <p class="about-lead">Shreya's Kitchen started with a simple idea: not everyone has the time to roll fresh rotis every day, but everyone deserves to eat like they're at home. Every roti, bhakri and poli here is hand-rolled in small batches, using the same flour, the same patience, and the same care as a family kitchen.</p>
+      <hr class="about-rule">
+      <p class="about-quote">"No shortcuts. No preservatives. No machine-pressed dough."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT / QUICK LINKS ================= -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact" style="padding:56px 32px;">
+      <div class="section-head">
+        <span class="eyebrow">Get in touch</span>
+        <h2>Ready to order? Reach us directly.</h2>
+        <p>Add your favourites to the cart and send the order on WhatsApp, or reach out using any of the links below.</p>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" id="whatsappLink" href="https://wa.me/918605664101?text=Hi%20Shreya's%20Kitchen%2C%20I'd%20like%20to%20place%20an%20order." target="_blank" rel="noopener">
+          <div class="icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.9 7.9 0 0 0 3.85 1h.01a7.94 7.94 0 0 0 5.6-13.58zM12.06 18.4h-.01a6.5 6.5 0 0 1-3.32-.91l-.24-.14-2.47.65.66-2.41-.16-.25a6.55 6.55 0 1 1 12.16-3.44 6.53 6.53 0 0 1-6.62 6.5zm3.6-4.9c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.44.1-.13.19-.5.64-.62.78-.11.13-.23.15-.42.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.09-1.36-.11-.19-.01-.3.09-.4.09-.09.2-.23.3-.35.1-.12.13-.19.2-.32.06-.13.03-.25-.02-.35-.05-.1-.44-1.06-.6-1.45-.16-.38-.32-.33-.44-.33-.11 0-.24-.01-.37-.01a.72.72 0 0 0-.52.24c-.18.19-.68.67-.68 1.63 0 .96.7 1.89.8 2.02.1.13 1.37 2.1 3.33 2.94.46.2.83.32 1.11.41.47.15.9.13 1.24.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.11-.94-.05-.08-.18-.13-.38-.23z"></path></svg>
+          </div>
+          <h4>WhatsApp Order</h4>
+          <p>Fastest way to order — tap to chat with us directly.</p>
+          <span class="cta-line">Message now
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </span>
+        </a>
+
+        <a class="contact-card" href="tel:+918605664101">
+          <div class="icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          </div>
+          <h4>Call Us</h4>
+          <p>+91 86056 64101<br>Mon–Sun, 8am – 8pm</p>
+          <span class="cta-line">Call now
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </span>
+        </a>
+
+        <a class="contact-card" href="https://instagram.com" target="_blank" rel="noopener">
+          <div class="icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+          </div>
+          <h4>Instagram</h4>
+          <p>See daily specials and behind-the-scenes from the kitchen.</p>
+          <span class="cta-line">@shreyaskitchen
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </span>
+        </a>
+
+        <a class="contact-card" href="https://maps.google.com/?q=Shreya%27s+Kitchen" target="_blank" rel="noopener">
+          <div class="icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <h4>Find Us</h4>
+          <p>Pune, Maharashtra<br>(exact address on request)</p>
+          <span class="cta-line">Get directions
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-mark">Shreya's Kitchen</div>
+  <p>Made fresh, made with love. © <span id="year"></span> Shreya's Kitchen. All rights reserved.</p>
+</footer>
+
+<!-- ================= CART DRAWER ================= -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Shopping cart">
+  <div class="drawer-head">
+    <h3>Your order</h3>
+    <button class="drawer-close" id="drawerClose" aria-label="Close cart">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-footer">
+    <div class="total-row">
+      <span>Total</span>
+      <strong id="cartTotal">₹0</strong>
+    </div>
+    <a class="btn whatsapp-btn" id="drawerWhatsapp" href="#" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.9 7.9 0 0 0 3.85 1h.01a7.94 7.94 0 0 0 5.6-13.58zM12.06 18.4h-.01a6.5 6.5 0 0 1-3.32-.91l-.24-.14-2.47.65.66-2.41-.16-.25a6.55 6.55 0 1 1 12.16-3.44 6.53 6.53 0 0 1-6.62 6.5z"></path></svg>
+      Place order via WhatsApp
+    </a>
+    <p class="drawer-hint">You'll be taken to WhatsApp with your order pre-filled.</p>
+  </div>
+</aside>
+
+<script>
+  // ---------- MENU DATA ----------
+  const MENU = [
+    {
+      id:'chapathi',
+      name:'Chapathi',
+      tag:'Roti',
+      price:12,
+      unit:'pc',
+      desc:'Soft whole-wheat flatbread, rolled thin and puffed fresh on the tawa.',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Chapati%202.jpg'
+    },
+    {
+      id:'jowar-roti',
+      name:'Jowar Roti',
+      tag:'Millet · Gluten-free',
+      price:18,
+      unit:'pc',
+      desc:'Gluten-free sorghum flatbread, hand-patted the traditional way for that rustic texture.',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Nachni%20Jowar%20Bhakri%20NMM%20Soc%20Thane%20Maharashtra%2001.jpg'
+    },
+    {
+      id:'bajra-roti',
+      name:'Bajra Roti',
+      tag:'Millet · Gluten-free',
+      price:18,
+      unit:'pc',
+      desc:'Hearty pearl-millet roti — thick, warming, and a favourite through the colder months.',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Bajra%20Roti%20and%20Dal.JPG'
+    },
+    {
+      id:'puran-poli',
+      name:'Puran Poli',
+      tag:'Sweet',
+      price:45,
+      unit:'pc',
+      desc:'A festive favourite — sweet stuffed flatbread with jaggery and chana dal, finished with ghee.',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Maharashtrian%20Puran%20Poli.jpg'
+    },
+    {
+      id:'aloo-paratha',
+      name:'Aloo Paratha',
+      tag:'Stuffed',
+      price:35,
+      unit:'pc',
+      desc:'Whole-wheat paratha stuffed with spiced mashed potato, cooked with a dab of ghee.',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Aloo%20Paratha%20North%20Indian.jpg'
+    },
+    {
+      id:'thalipeeth',
+      name:'Thalipeeth',
+      tag:'Multigrain',
+      price:35,
+      unit:'pc',
+      desc:'A savoury multigrain pancake with onions and spices — crisp outside, soft within.',
+      img:'https://commons.wikimedia.org/wiki/Special:FilePath/Maharashtrian%20Thalipith%20-%202.jpg'
+    }
+  ];
+
+  // ---------- STATE ----------
+  const qtyState = {};      // per-card selector quantity (before adding)
+  const cart = {};          // items actually added to cart {id: qty}
+  MENU.forEach(item => qtyState[item.id] = 1);
+
+  // ---------- RENDER MENU ----------
+  const menuGrid = document.getElementById('menuGrid');
+  MENU.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.id = item.id;
+    card.innerHTML = `
+      <div class="card-photo">
+        <img src="${item.img}" alt="${item.name}" loading="lazy">
+        <span class="card-tag">${item.tag}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-title-row">
+          <h3>${item.name}</h3>
+          <span class="card-unit-price">₹${item.price}/${item.unit}</span>
+        </div>
+        <p class="card-desc">${item.desc}</p>
+        <div class="card-footer">
+          <div class="qty-stepper">
+            <button class="qty-minus" aria-label="Decrease quantity">−</button>
+            <span class="qty-val">1</span>
+            <button class="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="add-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            Add
+          </button>
+        </div>
+      </div>
+    `;
+    menuGrid.appendChild(card);
+  });
+
+  // ---------- QTY STEPPER + ADD TO CART ----------
+  menuGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.card');
+    if (!card) return;
+    const id = card.dataset.id;
+
+    if (e.target.closest('.qty-minus')) {
+      qtyState[id] = Math.max(1, qtyState[id] - 1);
+      card.querySelector('.qty-val').textContent = qtyState[id];
+    }
+    if (e.target.closest('.qty-plus')) {
+      qtyState[id] = Math.min(50, qtyState[id] + 1);
+      card.querySelector('.qty-val').textContent = qtyState[id];
+    }
+    if (e.target.closest('.add-btn')) {
+      const btn = card.querySelector('.add-btn');
+      cart[id] = (cart[id] || 0) + qtyState[id];
+      renderCart();
+      btn.classList.add('added');
+      const original = btn.innerHTML;
+      btn.innerHTML = 'Added ✓';
+      setTimeout(() => { btn.innerHTML = original; btn.classList.remove('added'); }, 900);
+    }
+  });
+
+  // ---------- CART RENDER ----------
+  const drawerBody = document.getElementById('drawerBody');
+  const cartTotalEl = document.getElementById('cartTotal');
+  const cartCountEl = document.getElementById('cartCount');
+  const drawerWhatsapp = document.getElementById('drawerWhatsapp');
+  const WHATSAPP_NUMBER = '918605664101'; // TODO: replace with Shreya's real WhatsApp number
+
+  function renderCart(){
+    const ids = Object.keys(cart).filter(id => cart[id] > 0);
+    let total = 0;
+    let count = 0;
+
+    if (ids.length === 0) {
+      drawerBody.innerHTML = `
+        <div class="empty-cart">
+          <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <p>Your cart's empty.<br>Add something fresh from the menu.</p>
+        </div>`;
+    } else {
+      drawerBody.innerHTML = ids.map(id => {
+        const item = MENU.find(m => m.id === id);
+        const qty = cart[id];
+        const lineTotal = qty * item.price;
+        total += lineTotal;
+        count += qty;
+        return `
+          <div class="drawer-item" data-id="${id}">
+            <img src="${item.img}" alt="${item.name}">
+            <div class="drawer-item-info">
+              <h4>${item.name}</h4>
+              <div class="price-line">₹${item.price} × ${qty} = ₹${lineTotal}</div>
+            </div>
+            <div class="drawer-item-controls">
+              <div class="qty-stepper">
+                <button class="cart-qty-minus" aria-label="Decrease quantity">−</button>
+                <span class="qty-val">${qty}</span>
+                <button class="cart-qty-plus" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="remove-btn">Remove</button>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    cartTotalEl.textContent = `₹${total}`;
+    if (count > 0) {
+      cartCountEl.style.display = 'flex';
+      cartCountEl.textContent = count;
+    } else {
+      cartCountEl.style.display = 'none';
+    }
+
+    // Build WhatsApp message
+    let msgLines = ["Hi Shreya's Kitchen! I'd like to order:"];
+    ids.forEach(id => {
+      const item = MENU.find(m => m.id === id);
+      msgLines.push(`• ${item.name} x${cart[id]} — ₹${cart[id]*item.price}`);
+    });
+    msgLines.push(`Total: ₹${total}`);
+    msgLines.push("Please confirm availability and delivery time. Thank you!");
+    const text = encodeURIComponent(msgLines.join('\n'));
+    drawerWhatsapp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  }
+
+  drawerBody.addEventListener('click', (e) => {
+    const row = e.target.closest('.drawer-item');
+    if (!row) return;
+    const id = row.dataset.id;
+
+    if (e.target.closest('.cart-qty-minus')) {
+      cart[id] = Math.max(1, cart[id] - 1);
+    }
+    if (e.target.closest('.cart-qty-plus')) {
+      cart[id] = Math.min(50, cart[id] + 1);
+    }
+    if (e.target.closest('.remove-btn')) {
+      delete cart[id];
+    }
+    renderCart();
+  });
+
+  // ---------- DRAWER OPEN/CLOSE ----------
+  const overlay = document.getElementById('overlay');
+  const drawer = document.getElementById('drawer');
+  function openDrawer(){ overlay.classList.add('open'); drawer.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeDrawer(){ overlay.classList.remove('open'); drawer.classList.remove('open'); document.body.style.overflow=''; }
+  document.getElementById('cartOpenBtn').addEventListener('click', openDrawer);
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  // ---------- MOBILE NAV ----------
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ---------- SCROLL REVEAL ----------
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(en => { if (en.isIntersecting) en.target.classList.add('in-view'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.card').forEach(c => io.observe(c));
+
+  // ---------- MISC ----------
+  document.getElementById('year').textContent = new Date().getFullYear();
+  renderCart();
+</script>
+
+</body>
+</html>
